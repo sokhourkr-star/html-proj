@@ -1,0 +1,196 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.phone{background:var(--color-background-tertiary);border-radius:36px;border:1.5px solid var(--color-border-secondary);max-width:390px;margin:1.5rem auto;overflow:hidden;min-height:780px;display:flex;flex-direction:column}
+.status-bar{padding:14px 20px 8px;display:flex;justify-content:space-between;align-items:center}
+.status-time{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.status-icons{display:flex;gap:6px;align-items:center;color:var(--color-text-secondary)}
+.top-bar{padding:8px 16px 10px;display:flex;align-items:center;gap:10px;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.avatar-sm{width:34px;height:34px;border-radius:50%;background:#0077B5;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff;flex-shrink:0}
+.search-bar{flex:1;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:7px 10px;display:flex;align-items:center;gap:6px}
+.search-bar span{font-size:13px;color:var(--color-text-tertiary)}
+.top-icons{display:flex;gap:14px;color:var(--color-text-secondary)}
+.top-icons i{font-size:20px}
+.feed{flex:1;overflow-y:auto;background:var(--color-background-secondary)}
+.post-card{background:var(--color-background-primary);margin-bottom:8px;padding:14px 16px}
+.post-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.avatar-med{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:font-size:14px;font-weight:500;color:#fff;flex-shrink:0;font-size:14px;align-items:center;justify-content:center}
+.av1{background:#0077B5}
+.av2{background:#00704A}
+.av3{background:#8B4513}
+.post-meta p{margin:0;line-height:1.4}
+.poster-name{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.poster-title{font-size:12px;color:var(--color-text-secondary)}
+.poster-time{font-size:11px;color:var(--color-text-tertiary)}
+.post-text{font-size:14px;color:var(--color-text-primary);line-height:1.5;margin-bottom:12px}
+.post-img{border-radius:6px;overflow:hidden;margin-bottom:10px;background:var(--color-background-secondary);height:160px;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--color-border-tertiary)}
+.post-img-placeholder{font-size:13px;color:var(--color-text-tertiary);display:flex;flex-direction:column;align-items:center;gap:6px}
+.post-stats{font-size:12px;color:var(--color-text-tertiary);padding-bottom:8px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:6px}
+.post-actions{display:flex;justify-content:space-around}
+.action-btn{display:flex;align-items:center;gap:5px;padding:6px 8px;border-radius:6px;font-size:13px;color:var(--color-text-secondary);cursor:pointer;border:none;background:transparent}
+.action-btn i{font-size:18px}
+.action-btn:hover{background:var(--color-background-secondary)}
+.story-bar{background:var(--color-background-primary);padding:12px 16px;margin-bottom:8px;display:flex;gap:12px;overflow-x:auto;scrollbar-width:none}
+.story-item{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+.story-ring{width:52px;height:52px;border-radius:50%;border:2px solid #0077B5;padding:2px}
+.story-inner{width:100%;height:100%;border-radius:50%;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--color-text-secondary)}
+.story-label{font-size:10px;color:var(--color-text-secondary);max-width:52px;text-align:center}
+.add-story{background:#0077B5;color:#fff}
+.bottom-nav{background:var(--color-background-primary);border-top:0.5px solid var(--color-border-tertiary);display:flex;justify-content:space-around;padding:8px 0 14px}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 12px;cursor:pointer;border:none;background:transparent}
+.nav-item i{font-size:22px;color:var(--color-text-tertiary)}
+.nav-item span{font-size:10px;color:var(--color-text-tertiary)}
+.nav-item.active i,.nav-item.active span{color:#0077B5}
+.notif-dot{position:relative;display:inline-block}
+.dot{position:absolute;top:-2px;right:-4px;width:8px;height:8px;background:#cc1016;border-radius:50%;border:1.5px solid var(--color-background-primary)}
+.follow-pill{font-size:12px;color:#0077B5;border:1px solid #0077B5;border-radius:12px;padding:2px 10px;float:right;cursor:pointer}
+.you-might{background:var(--color-background-primary);margin-bottom:8px;padding:14px 16px}
+.section-label{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:10px}
+.suggestion-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sug-info{flex:1}
+.sug-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.sug-role{font-size:11px;color:var(--color-text-secondary)}
+</style>
+
+<h2 class="sr-only">LinkedIn mobile app mockup showing feed, stories, and bottom navigation</h2>
+
+<div class="phone">
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <i class="ti ti-wifi" style="font-size:15px" aria-hidden="true"></i>
+      <i class="ti ti-signal-4g" style="font-size:15px" aria-hidden="true"></i>
+      <i class="ti ti-battery" style="font-size:15px" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    <div class="avatar-sm">AJ</div>
+    <div class="search-bar">
+      <i class="ti ti-search" style="font-size:15px;color:var(--color-text-tertiary)" aria-hidden="true"></i>
+      <span>Search</span>
+    </div>
+    <div class="top-icons">
+      <i class="ti ti-message-circle" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div class="feed">
+    <div class="story-bar">
+      <div class="story-item">
+        <div class="story-ring"><div class="story-inner add-story"><i class="ti ti-plus" style="font-size:20px" aria-hidden="true"></i></div></div>
+        <span class="story-label">Add post</span>
+      </div>
+      <div class="story-item">
+        <div class="story-ring"><div class="story-inner" style="background:#dce8f5;color:#0077B5;font-weight:500">SR</div></div>
+        <span class="story-label">Sarah R.</span>
+      </div>
+      <div class="story-item">
+        <div class="story-ring"><div class="story-inner" style="background:#d9f0e8;color:#00704A;font-weight:500">MK</div></div>
+        <span class="story-label">Marcus K.</span>
+      </div>
+      <div class="story-item">
+        <div class="story-ring"><div class="story-inner" style="background:#f3e5d7;color:#8B4513;font-weight:500">PL</div></div>
+        <span class="story-label">Priya L.</span>
+      </div>
+      <div class="story-item">
+        <div class="story-ring"><div class="story-inner">JN</div></div>
+        <span class="story-label">James N.</span>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <div class="avatar-med av1">SR</div>
+        <div class="post-meta" style="flex:1">
+          <p class="poster-name">Sarah Reynolds <span class="follow-pill">+ Follow</span></p>
+          <p class="poster-title">Senior Product Designer · Google</p>
+          <p class="poster-time">2h · <i class="ti ti-world" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i></p>
+        </div>
+      </div>
+      <p class="post-text">Excited to share that I've just completed Google's UX Research certification! 🎓 It's been an incredible journey learning how to translate user insights into impactful design decisions. Big thanks to my team for the support.</p>
+      <div class="post-img">
+        <div class="post-img-placeholder">
+          <i class="ti ti-certificate" style="font-size:32px;color:var(--color-text-tertiary)" aria-hidden="true"></i>
+          <span>Certificate image</span>
+        </div>
+      </div>
+      <div class="post-stats">
+        <i class="ti ti-thumb-up" style="font-size:13px;color:#0077B5;vertical-align:-1px" aria-hidden="true"></i>
+        <i class="ti ti-heart" style="font-size:13px;color:#cc1016;vertical-align:-1px" aria-hidden="true"></i>
+        312 · 48 comments
+      </div>
+      <div class="post-actions">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i> Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i> Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i> Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i> Send</button>
+      </div>
+    </div>
+
+    <div class="you-might">
+      <p class="section-label">People you may know</p>
+      <div class="suggestion-row">
+        <div class="avatar-med av2" style="width:40px;height:40px;font-size:13px">MK</div>
+        <div class="sug-info">
+          <p class="sug-name">Marcus Kim</p>
+          <p class="sug-role">Engineering Manager · Stripe</p>
+        </div>
+        <button style="font-size:12px;color:#0077B5;border:1px solid #0077B5;border-radius:14px;padding:4px 12px;background:transparent;cursor:pointer">Connect</button>
+      </div>
+      <div class="suggestion-row">
+        <div class="avatar-med av3" style="width:40px;height:40px;font-size:13px">PL</div>
+        <div class="sug-info">
+          <p class="sug-name">Priya Lal</p>
+          <p class="sug-role">Head of Data · Spotify</p>
+        </div>
+        <button style="font-size:12px;color:#0077B5;border:1px solid #0077B5;border-radius:14px;padding:4px 12px;background:transparent;cursor:pointer">Connect</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <div class="avatar-med" style="background:#6B48FF;width:44px;height:44px;font-size:14px;display:flex;align-items:center;justify-content:center;color:#fff;border-radius:50%;flex-shrink:0">JN</div>
+        <div class="post-meta" style="flex:1">
+          <p class="poster-name">James Nguyen</p>
+          <p class="poster-title">Staff Engineer · Airbnb</p>
+          <p class="poster-time">5h · <i class="ti ti-world" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i></p>
+        </div>
+      </div>
+      <p class="post-text">Hot take: the best engineers I've worked with weren't the ones who wrote the most code — they were the ones who asked the best questions before writing a single line.</p>
+      <div class="post-stats">
+        <i class="ti ti-thumb-up" style="font-size:13px;color:#0077B5;vertical-align:-1px" aria-hidden="true"></i>
+        1.4k · 203 comments · 87 reposts
+      </div>
+      <div class="post-actions">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i> Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i> Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i> Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i> Send</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-item active" aria-label="Home">
+      <i class="ti ti-home" aria-hidden="true"></i>
+      <span>Home</span>
+    </button>
+    <button class="nav-item" aria-label="My Network">
+      <i class="ti ti-users" aria-hidden="true"></i>
+      <span>Network</span>
+    </button>
+    <button class="nav-item" aria-label="Post">
+      <i class="ti ti-plus-circle" aria-hidden="true"></i>
+      <span>Post</span>
+    </button>
+    <button class="nav-item" aria-label="Notifications">
+      <div class="notif-dot"><i class="ti ti-bell" aria-hidden="true"></i><span class="dot"></span></div>
+      <span>Notifs</span>
+    </button>
+    <button class="nav-item" aria-label="Jobs">
+      <i class="ti ti-briefcase" aria-hidden="true"></i>
+      <span>Jobs</span>
+    </button>
+  </div>
+</div>
